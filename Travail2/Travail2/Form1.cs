@@ -10,11 +10,29 @@ using System.Windows.Forms;
 
 namespace Travail2
 {
-    public partial class Form1 : Form
+    public partial class JeuFuturama : Form
     {
-        public Form1()
+        public JeuFuturama()
         {
             InitializeComponent();
+        }
+
+        private void JeuFuturama_Load(object sender, EventArgs e)
+        {
+            
+
+
+        }
+
+        private void BtnQuitter_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void BtnCommencer_Click(object sender, EventArgs e)
+        {
+            FormGame MaForme = new FormGame();
+            MaForme.ShowDialog();
         }
     }
 }

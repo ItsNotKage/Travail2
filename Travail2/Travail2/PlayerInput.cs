@@ -8,33 +8,33 @@ namespace Travail2
 {
      public class PlayerInput
     {
-        private bool MoveUp;
-        private bool MoveDown;
+        private bool MoveRight;
+        private bool MoveLeft;
 
         public PlayerInput()
         {
-            MoveUp = false;
-            MoveDown = false;
+            MoveRight = false;
+            MoveLeft = false;
         }
 
-        public bool GetMoveUp()
+        public bool GetMoveRight()
         {
-            return MoveUp;
+            return MoveRight;
         }
 
-        public void SetMoveUp(bool moveUp)
+        public void SetMoveRight(bool moveRight)
         {
-            MoveUp = moveUp;
+            MoveRight = moveRight;
         }
 
-        public bool GetMoveDown()
+        public bool GetMoveLeft()
         {
-            return MoveDown;
+            return MoveLeft;
         }
 
-        public void SetMoveDown(bool moveDown)
+        public void SetMoveLeft(bool moveLeft)
         {
-            MoveDown = moveDown;
+            MoveLeft = moveLeft;
         }
     }
 

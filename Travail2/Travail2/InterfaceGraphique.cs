@@ -12,65 +12,76 @@ namespace Travail2
 {
     public class InterfaceGraphique
     {
-        private int Width;
-        private int Height;
-        private Bitmap gameImage;
-        private Bitmap playerImage;
-        private Bitmap backgroundImage;
-        private PlayerInput playerInput;
-        private int positionJoueurX;
-        private int positionJoueurY;
+        public int Width;
+        public int Height;
+        public Bitmap GameImage;
+        public Bitmap BackgroundImage;
+        public Bitmap PlayerImage;
+        public Image BackgroundImageOriginal;
+        public Image PlayerImageOriginal;
 
         public InterfaceGraphique()
         {
-            Width = 1024;
-            Height = 750;
-            positionJoueurX = 0;
-            positionJoueurY = 450;
-            playerInput = new PlayerInput();
-            gameImage = new Bitmap(Width, Height);
-           
+            Width = 810;
+            Height = 450;
+            BackgroundImageOriginal = Image.FromFile("../../Images/Background.png");
+            PlayerImageOriginal = Image.FromFile("../../Images/xeon.png");
+            BackgroundImage = new Bitmap(BackgroundImageOriginal, Width, Height);
+            PlayerImage = new Bitmap(PlayerImageOriginal, 50, 100);
+            GameImage = new Bitmap(Width, Height);
         }
-        public void LoadGraphicsInForm()
+        public int GetWidth()
         {
-            Image backgroundImage = Image.FromFile("../../Images/Background.png");
-            Image playerImage = Image.FromFile("../../Images/xeon.png");
-
-            backgroundImage = new Bitmap(backgroundImage, Width, Height);
-            playerImage = new Bitmap(playerImage, 118, 200);
-           ;
-
-
-            
+            return Width;
         }
-        public void Draw()
+
+        public void SetWidth(int width)
         {
-            gameImage.Dispose();
-            gameImage = new Bitmap(Width, Height);
-
-            using (Graphics graphics = Graphics.FromImage(gameImage))
-            {
-                Image backgroundImage = Image.FromFile("../../Images/Background.png");
-                Image playerImage = Image.FromFile("../../Images/xeon.png");
-                graphics.DrawImage(backgroundImage, 0, 0);
-                graphics.DrawImage(playerImage, positionJoueurX, positionJoueurY);
-            }
-
-            this.backgroundImage = gameImage;
+            Width = width;
         }
-        public void MettreAJour()
+        public int GetHeight()
         {
-            if (playerInput.GetMoveUp() == true && positionJoueurX >= 0)
-            {
+            return Height;
+        }
 
-                positionJoueurX = positionJoueurX - 10;
-            }
-            else if (playerInput.GetMoveDown() && positionJoueurX <= 920)
-            {
-                positionJoueurX = positionJoueurX + 10;
-            }
+        public void SetHeight(int height)
+        {
+            Height = height;
+        }
+        public Bitmap GetBackgroundImage()
+        {
+            return BackgroundImage;
+        }
 
-            Draw();
+        public void SetBackgroundImage(Bitmap backgroundImage)
+        {
+            BackgroundImage = backgroundImage;
+        }
+        public Bitmap GetPlayerImage()
+        {
+            return PlayerImage;
+        }
+
+        public void SetPlayerImage(Bitmap playerImage)
+        {
+            PlayerImage = playerImage;
+        }
+        public Bitmap GetGameImage()
+        {
+            return GameImage;
+        }
+
+        public void SetGameImage(Bitmap gameImage)
+        {
+            GameImage = gameImage;
+        }
+        public void LoadImage()
+        {
+            Image backgroundImageOriginal = Image.FromFile("../../Images/Background.png");
+            Image playerImageOriginal = Image.FromFile("../../Images/xeon.png");
+            BackgroundImage = new Bitmap(backgroundImageOriginal, Width, Height);
+            PlayerImage = new Bitmap(playerImageOriginal, 50, 100);
+            GameImage = new Bitmap(Width, Height);
         }
     }
 }

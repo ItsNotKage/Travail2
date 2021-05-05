@@ -16,7 +16,7 @@ namespace Travail2
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new JeuFuturama());
+            Application.Run(new GameMenu());
         }
     }
 }

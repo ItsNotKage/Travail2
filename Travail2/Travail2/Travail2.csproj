@@ -98,8 +98,8 @@
   <ItemGroup>
     <Content Include="Images\Background.png" />
     <Content Include="Images\Bear.png" />
-    <Content Include="Images\BoltNut.png" />
-    <Content Include="Images\xeon.png" />
+    <Content Include="Images\BeerBottle.png" />
+    <Content Include="Images\Bender.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\Logo.png" />

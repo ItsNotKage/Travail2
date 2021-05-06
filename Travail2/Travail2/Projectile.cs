@@ -9,13 +9,76 @@ namespace Travail2
 {
     public class Projectile
     {
-        private Bitmap BoltNutImage;
-        private Image BoltNutImageOriginal;
+        private Bitmap ProjectileImage;
+        private Image ProjectileImageOriginal;
+        private int Width;
+        private int Height;
+        public int PositionProjectileX;
+        public int PositionProjectileY;
+        private int Speed;
+        
 
         public Projectile()
         {
-            BoltNutImageOriginal = Image.FromFile("../../Images/BoltNut.png");
-            BoltNutImage = new Bitmap(BoltNutImageOriginal, 50, 100);
+            Width = 15;
+            Height = 35;
+            Speed = 10;
+            ProjectileImageOriginal = Image.FromFile("../../Images/BeerBottle.png");
+            ProjectileImage = new Bitmap(ProjectileImageOriginal, Width, Height);
+        }
+        public Bitmap GetProjectileImage()
+        {
+            return ProjectileImage;
+        }
+
+        public void SetProjectileImage(Bitmap projectileImage)
+        {
+            ProjectileImage = projectileImage;
+        }
+        public int GetWidth()
+        {
+            return Width;
+        }
+
+        public void SetWidth(int width)
+        {
+            Width = width;
+        }
+        public int GetHeight()
+        {
+            return Height;
+        }
+
+        public void SetHeight(int height)
+        {
+            Height = height;
+        }
+        public int GetSpeed()
+        {
+            return Speed;
+        }
+
+        public void SetSpeed(int speed)
+        {
+            Speed = speed;
+        }
+        public int GetPositionProjectileX()
+        {
+            return PositionProjectileX;
+        }
+
+        public void SetPositionProjectileX(int positionProjectileX)
+        {
+            PositionProjectileX = positionProjectileX;
+        }
+        public int GetPositionProjectileY()
+        {
+            return PositionProjectileY;
+        }
+
+        public void SetPositionProjectileY(int positionProjectileY)
+        {
+            PositionProjectileY = positionProjectileY;
         }
     }
 }

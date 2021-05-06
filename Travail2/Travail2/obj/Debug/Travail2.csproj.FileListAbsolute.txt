@@ -1,0 +1,11 @@
+C:\Users\cedri\OneDrive\Bureau\Travail2-main\Travail2\Travail2\bin\Debug\Travail2.exe.config
+C:\Users\cedri\OneDrive\Bureau\Travail2-main\Travail2\Travail2\bin\Debug\Travail2.exe
+C:\Users\cedri\OneDrive\Bureau\Travail2-main\Travail2\Travail2\bin\Debug\Travail2.pdb
+C:\Users\cedri\OneDrive\Bureau\Travail2-main\Travail2\Travail2\obj\Debug\Travail2.csprojAssemblyReference.cache
+C:\Users\cedri\OneDrive\Bureau\Travail2-main\Travail2\Travail2\obj\Debug\Travail2.FormGame.resources
+C:\Users\cedri\OneDrive\Bureau\Travail2-main\Travail2\Travail2\obj\Debug\Travail2.Properties.Resources.resources
+C:\Users\cedri\OneDrive\Bureau\Travail2-main\Travail2\Travail2\obj\Debug\Travail2.csproj.GenerateResource.cache
+C:\Users\cedri\OneDrive\Bureau\Travail2-main\Travail2\Travail2\obj\Debug\Travail2.csproj.CoreCompileInputs.cache
+C:\Users\cedri\OneDrive\Bureau\Travail2-main\Travail2\Travail2\obj\Debug\Travail2.exe
+C:\Users\cedri\OneDrive\Bureau\Travail2-main\Travail2\Travail2\obj\Debug\Travail2.pdb
+C:\Users\cedri\OneDrive\Bureau\Travail2-main\Travail2\Travail2\obj\Debug\Travail2.GameMenu.resources

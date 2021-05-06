@@ -11,14 +11,12 @@ namespace Travail2
         public int PositionJoueurX;
         public int PositionJoueurY;
         public int Speed;
-        private int Vie;
 
         public Joueur()
         {
             PositionJoueurX = 25;
             PositionJoueurY = 325;
-            Speed = 15;
-            Vie = 100;     
+            Speed = 15;   
         }
         public int GetPositionJoueurX()
         {
@@ -46,10 +44,6 @@ namespace Travail2
         public void SetSpeed(int speed)
         {
             Speed = speed;
-        }
-        private void PlayerHealth()
-        {
-            Vie = 100;
         }
 
     }

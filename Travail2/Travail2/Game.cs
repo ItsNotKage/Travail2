@@ -16,7 +16,7 @@ namespace Travail2
         private PlayerInput playerInput;
         InterfaceGraphique graphic = new InterfaceGraphique();
         Joueur joueur = new Joueur();
-        Ennemie enemy = new Ennemie();
+        Projectile projectile = new Projectile();
         public FormGame()
         {
             InitializeComponent();
@@ -25,7 +25,6 @@ namespace Travail2
         private void FormGame_Load(object sender, EventArgs e)
         {
             graphic.LoadImage();
-            enemy.MakeEnemies();
 
             playerInput = new PlayerInput();
 
@@ -46,19 +45,20 @@ namespace Travail2
             {
                 joueur.PositionJoueurX = joueur.GetPositionJoueurX() + joueur.GetSpeed();
             }
+            projectile.PositionProjectileY = projectile.GetPositionProjectileY() - projectile.GetSpeed();
 
             Draw();
         }
 
         private void Draw()
         {
-            gameImage = new Bitmap(graphic.Width, graphic.Height);
-            graphic.GameImage.Dispose();
+            gameImage = new Bitmap(graphic.GetWidth(), graphic.GetHeight());
+            graphic.GetGameImage().Dispose();
             using (Graphics graphics = Graphics.FromImage(gameImage))
             {
-                graphics.DrawImage(graphic.BackgroundImage, 0, 0);
-                graphics.DrawImage(graphic.PlayerImage, joueur.PositionJoueurX, joueur.PositionJoueurY);
-                graphics.DrawImage()
+                graphics.DrawImage(graphic.GetBackgroundImage(), 0, 0);
+                graphics.DrawImage(graphic.GetPlayerImage(), joueur.GetPositionJoueurX(), joueur.GetPositionJoueurY());
+                graphics.DrawImage(projectile.GetProjectileImage(), projectile.GetPositionProjectileX(), projectile.GetPositionProjectileY());
             }
 
             this.BackgroundImage = gameImage;
@@ -73,7 +73,8 @@ namespace Travail2
         }
         private void TirerProjectile()
         {
-            Projectile projectile = new Projectile();
+            projectile.SetPositionProjectileX(joueur.GetPositionJoueurX() + projectile.GetWidth());
+            projectile.SetPositionProjectileY(joueur.GetPositionJoueurY() - projectile.GetHeight());
         }
 
         private void KeyIsDown(object sender, KeyEventArgs e)

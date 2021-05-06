@@ -17,6 +17,7 @@ namespace Travail2
         private Image EnemyImageOriginal;
         private int PositionEnemyX;
         private int PositionEnemyY;
+        private int Speed;
         Ennemie enemy;
         List<Ennemie> Enemies;
         public Ennemie()
@@ -25,6 +26,7 @@ namespace Travail2
             EnemyImage = new Bitmap(EnemyImageOriginal, 50, 100);
             PositionEnemyX = random.Next(0, 850);
             PositionEnemyY = 0;
+            Speed = 5;
             enemy = new Ennemie();
             Enemies = new List<Ennemie>();
         }
@@ -55,11 +57,21 @@ namespace Travail2
         {
             PositionEnemyY = positionEnemyY;
         }
-        public void MakeEnemies()
+        public int GetSpeed()
         {
-            Image EnemyImageOriginal = Image.FromFile("../../Images/BoltNut.png");
-            EnemyImage = new Bitmap(EnemyImageOriginal, 50, 100);
-            Enemies.Add(enemy);
+            return Speed;
         }
+
+        public void SetSpeed(int speed)
+        {
+            Speed = speed;
+        }
+        //public void MakeEnemies()
+        //{
+        //    EnemyImageOriginal = Image.FromFile("../../Images/Bear.png");
+        //    EnemyImage = new Bitmap(EnemyImageOriginal, 50, 100);
+        //    enemy.SetPositionEnemyY(-100);
+        //    enemy.SetPositionEnemyX(random.Next(0, 850));
+        //}
     }
 }

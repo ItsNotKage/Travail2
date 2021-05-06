@@ -6,26 +6,25 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Travail2
 {
     public class InterfaceGraphique
     {
-        public int Width;
-        public int Height;
-        public Bitmap GameImage;
-        public Bitmap BackgroundImage;
-        public Bitmap PlayerImage;
-        public Image BackgroundImageOriginal;
-        public Image PlayerImageOriginal;
+        private int Width;
+        private int Height;
+        private Bitmap GameImage;
+        private Bitmap BackgroundImage;
+        private Bitmap PlayerImage;
+        private Image BackgroundImageOriginal;
+        private Image PlayerImageOriginal;
 
         public InterfaceGraphique()
         {
             Width = 810;
             Height = 450;
             BackgroundImageOriginal = Image.FromFile("../../Images/Background.png");
-            PlayerImageOriginal = Image.FromFile("../../Images/xeon.png");
+            PlayerImageOriginal = Image.FromFile("../../Images/Bender.png");
             BackgroundImage = new Bitmap(BackgroundImageOriginal, Width, Height);
             PlayerImage = new Bitmap(PlayerImageOriginal, 50, 100);
             GameImage = new Bitmap(Width, Height);
@@ -75,12 +74,13 @@ namespace Travail2
         {
             GameImage = gameImage;
         }
+
         public void LoadImage()
         {
-            Image backgroundImageOriginal = Image.FromFile("../../Images/Background.png");
-            Image playerImageOriginal = Image.FromFile("../../Images/xeon.png");
-            BackgroundImage = new Bitmap(backgroundImageOriginal, Width, Height);
-            PlayerImage = new Bitmap(playerImageOriginal, 50, 100);
+            BackgroundImageOriginal = Image.FromFile("../../Images/Background.png");
+            PlayerImageOriginal = Image.FromFile("../../Images/Bender.png");
+            BackgroundImage = new Bitmap(BackgroundImageOriginal, Width, Height);
+            PlayerImage = new Bitmap(PlayerImageOriginal, 50, 100);
             GameImage = new Bitmap(Width, Height);
         }
     }

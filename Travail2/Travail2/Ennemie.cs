@@ -16,19 +16,19 @@ namespace Travail2
         private Bitmap EnemyImage;
         private Image EnemyImageOriginal;
         private int PositionEnemyX;
-        private int PositionEnemyY;
+        public int PositionEnemyY;
+        private int Width;
+        private int Height;
         private int Speed;
-        Ennemie enemy;
-        List<Ennemie> Enemies;
         public Ennemie()
         {
+            Width = 50;
+            Height = 75;
             EnemyImageOriginal = Image.FromFile("../../Images/Bear.png");
-            EnemyImage = new Bitmap(EnemyImageOriginal, 50, 100);
-            PositionEnemyX = random.Next(0, 850);
+            EnemyImage = new Bitmap(EnemyImageOriginal, Width, Height);
+            PositionEnemyX = random.Next(0, 800);
             PositionEnemyY = 0;
             Speed = 5;
-            enemy = new Ennemie();
-            Enemies = new List<Ennemie>();
         }
         public Bitmap GetEnemyImage()
         {
@@ -38,6 +38,33 @@ namespace Travail2
         public void SetEnemy(Bitmap enemyImage)
         {
             EnemyImage = enemyImage;
+        }
+        public Image GetEnemyImageOriginal()
+        {
+            return EnemyImageOriginal;
+        }
+
+        public void SetEnemyImageOriginal(Image enemyImageOriginal)
+        {
+            EnemyImageOriginal = enemyImageOriginal;
+        }
+        public int GetWidth()
+        {
+            return Width;
+        }
+
+        public void SetEnemyWidth(int width)
+        {
+            Width = width;
+        }
+        public int GetHeight()
+        {
+            return Height;
+        }
+
+        public void SetHeight(int height)
+        {
+            Height = height;
         }
         public int GetPositionEnemyX()
         {
@@ -66,12 +93,6 @@ namespace Travail2
         {
             Speed = speed;
         }
-        //public void MakeEnemies()
-        //{
-        //    EnemyImageOriginal = Image.FromFile("../../Images/Bear.png");
-        //    EnemyImage = new Bitmap(EnemyImageOriginal, 50, 100);
-        //    enemy.SetPositionEnemyY(-100);
-        //    enemy.SetPositionEnemyX(random.Next(0, 850));
-        //}
+        
     }
 }

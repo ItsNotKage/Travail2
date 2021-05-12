@@ -13,20 +13,17 @@ namespace Travail2
     {
         private int Width;
         private int Height;
-        private Bitmap GameImage;
+        public Bitmap GameImage;
         private Bitmap BackgroundImage;
-        private Bitmap PlayerImage;
         private Image BackgroundImageOriginal;
-        private Image PlayerImageOriginal;
+
 
         public InterfaceGraphique()
         {
             Width = 810;
             Height = 450;
             BackgroundImageOriginal = Image.FromFile("../../Images/Background.png");
-            PlayerImageOriginal = Image.FromFile("../../Images/Bender.png");
             BackgroundImage = new Bitmap(BackgroundImageOriginal, Width, Height);
-            PlayerImage = new Bitmap(PlayerImageOriginal, 50, 100);
             GameImage = new Bitmap(Width, Height);
         }
         public int GetWidth()
@@ -56,15 +53,6 @@ namespace Travail2
         {
             BackgroundImage = backgroundImage;
         }
-        public Bitmap GetPlayerImage()
-        {
-            return PlayerImage;
-        }
-
-        public void SetPlayerImage(Bitmap playerImage)
-        {
-            PlayerImage = playerImage;
-        }
         public Bitmap GetGameImage()
         {
             return GameImage;
@@ -75,13 +63,10 @@ namespace Travail2
             GameImage = gameImage;
         }
 
-        public void LoadImage()
+        public void LoadBackgroundImage()
         {
             BackgroundImageOriginal = Image.FromFile("../../Images/Background.png");
-            PlayerImageOriginal = Image.FromFile("../../Images/Bender.png");
             BackgroundImage = new Bitmap(BackgroundImageOriginal, Width, Height);
-            PlayerImage = new Bitmap(PlayerImageOriginal, 50, 100);
-            GameImage = new Bitmap(Width, Height);
         }
     }
 }

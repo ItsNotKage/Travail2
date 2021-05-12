@@ -3,20 +3,56 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace Travail2
 {
     public class Joueur
     {
+        private Bitmap PlayerImage;
+        private Image PlayerImageOriginal;
+        private int Width;
+        private int Height;
         public int PositionJoueurX;
         public int PositionJoueurY;
-        public int Speed;
+        private int Speed;
 
         public Joueur()
         {
+            Width = 50;
+            Height = 100;
+            PlayerImageOriginal = Image.FromFile("../../Images/Bender.png");
+            PlayerImage = new Bitmap(PlayerImageOriginal, Width, Height);
             PositionJoueurX = 25;
             PositionJoueurY = 325;
             Speed = 15;   
+        }
+        public Bitmap GetPlayerImage()
+        {
+            return PlayerImage;
+        }
+
+        public void SetPlayerImage(Bitmap playerImage)
+        {
+            PlayerImage = playerImage;
+        }
+        public int GetWidth()
+        {
+            return Width;
+        }
+
+        public void SetWidth(int width)
+        {
+            Width = width;
+        }
+        public int GetHeight()
+        {
+            return Height;
+        }
+
+        public void SetHeight(int height)
+        {
+            Height = height;
         }
         public int GetPositionJoueurX()
         {
@@ -44,6 +80,11 @@ namespace Travail2
         public void SetSpeed(int speed)
         {
             Speed = speed;
+        }
+        public void LoadPlayerImage()
+        {
+            PlayerImageOriginal = Image.FromFile("../../Images/Bender.png");
+            PlayerImage = new Bitmap(PlayerImageOriginal, Width, Height);
         }
 
     }

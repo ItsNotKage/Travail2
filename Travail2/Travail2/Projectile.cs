@@ -17,7 +17,7 @@ namespace Travail2
         public int PositionProjectileY;
         private int Speed;
         
-
+        //a
         public Projectile()
         {
             Width = 15;
@@ -80,5 +80,6 @@ namespace Travail2
         {
             PositionProjectileY = positionProjectileY;
         }
+
     }
 }

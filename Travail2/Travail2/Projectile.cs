@@ -17,12 +17,12 @@ namespace Travail2
         public int PositionProjectileY;
         private int Speed;
         
-        //a
-        public Projectile()
+        
+        public Projectile(int speed)
         {
             Width = 15;
             Height = 35;
-            Speed = 10;
+            Speed = speed;
             ProjectileImageOriginal = Image.FromFile("../../Images/BeerBottle.png");
             ProjectileImage = new Bitmap(ProjectileImageOriginal, Width, Height);
         }

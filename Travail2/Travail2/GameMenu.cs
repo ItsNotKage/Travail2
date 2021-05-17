@@ -12,11 +12,13 @@ namespace Travail2
 {
     public partial class GameMenu : Form
     {
+        Parametres parametres = new Parametres();
         public GameMenu()
         {
             InitializeComponent();
         }
-
+      
+        
         private void BtnQuitter_Click(object sender, EventArgs e)
         {
             Close();
@@ -28,19 +30,24 @@ namespace Travail2
             {
                 if (cmbParametre.SelectedItem.ToString() == "Facile")
                 {
-                    FormGame MaForme = new FormGame();
+                    parametres.difficulte = Parametres.Difficulte.Facile;
+                    FormGame MaForme = new FormGame(parametres);
                     MaForme.Show();
                     Visible = false;
+                    
+
                 }
                 else if (cmbParametre.SelectedItem.ToString() == "Intermédiaire")
                 {
-                    FormGame MaForme = new FormGame();
+                    parametres.difficulte = Parametres.Difficulte.Intermediaire;
+                    FormGame MaForme = new FormGame(parametres);
                     MaForme.Show();
                     Visible = false;
                 }
                 else if (cmbParametre.SelectedItem.ToString() == "Difficile")
                 {
-                    FormGame MaForme = new FormGame();
+                    parametres.difficulte = Parametres.Difficulte.Difficile;
+                    FormGame MaForme = new FormGame(parametres);
                     MaForme.Show();
                     Visible = false;
                 }

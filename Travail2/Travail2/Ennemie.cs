@@ -20,7 +20,7 @@ namespace Travail2
         private int Width;
         private int Height;
         private int Speed;
-        public Ennemie()
+        public Ennemie(int speed)
         {
             Width = 50;
             Height = 75;
@@ -28,13 +28,16 @@ namespace Travail2
             EnemyImage = new Bitmap(EnemyImageOriginal, Width, Height);
             PositionEnemyX = random.Next(0, 800);
             PositionEnemyY = 0;
-            Speed = 5;
+            Speed = speed;
         }
         public Bitmap GetEnemyImage()
         {
             return EnemyImage;
         }
-
+        public void kill()
+        {
+            PositionEnemyX = 1000;
+        }
         public void SetEnemy(Bitmap enemyImage)
         {
             EnemyImage = enemyImage;

@@ -17,15 +17,13 @@ namespace Travail2
         public int PositionJoueurY;
         private int Speed;
 
-        public Joueur()
+        public Joueur(int speed)
         {
             Width = 50;
             Height = 100;
-            PlayerImageOriginal = Image.FromFile("../../Images/Bender.png");
-            PlayerImage = new Bitmap(PlayerImageOriginal, Width, Height);
             PositionJoueurX = 25;
             PositionJoueurY = 325;
-            Speed = 15;   
+            Speed = speed;   
         }
         public Bitmap GetPlayerImage()
         {

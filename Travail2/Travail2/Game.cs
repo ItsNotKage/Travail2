@@ -12,21 +12,37 @@ namespace Travail2
 {
     public partial class FormGame : Form
     {
+        const int DeuxsecondesEnTick = 125; 
+        int tick;
+        Parametres parametres = new Parametres();
         Bitmap gameImage;
         PlayerInput playerInput = new PlayerInput();
         InterfaceGraphique graphic = new InterfaceGraphique();
-        GameMaster gererJeu = new GameMaster();
-        Joueur joueur = new Joueur();
-        Projectile projectile = new Projectile();
+        Joueur joueur;
         List<Projectile> projectiles = new List<Projectile>();
-        Ennemie enemy = new Ennemie();
-        bool gameOver;
+        Ennemie enemy;
         int score;
         Label lbl_ScoreTitle = new Label();
         Label lbl_Score = new Label();
 
-        public FormGame()
+        public FormGame(Parametres parametres)
         {
+            if (parametres.difficulte == Parametres.Difficulte.Facile)
+            {
+                this.joueur = new Joueur(15);
+                this.enemy = new Ennemie(4);
+            }
+            else if (parametres.difficulte == Parametres.Difficulte.Intermediaire)
+            {
+                this.joueur = new Joueur(17);
+                this.enemy = new Ennemie(4);
+            }
+            else 
+            {
+                this.joueur = new Joueur(18);
+                this.enemy = new Ennemie(5);
+            }
+            this.parametres = parametres;
             InitializeComponent();
         }
 
@@ -50,16 +66,20 @@ namespace Travail2
             lbl_Score.BackColor = Color.Transparent;
             this.Controls.Add(lbl_ScoreTitle);
             this.Controls.Add(lbl_Score);
-
         }
         public void Colision()
         {
-            RectangleF rectangleProjectile = new RectangleF(projectile.GetPositionProjectileX(), projectile.GetPositionProjectileY(), projectile.GetWidth(), projectile.GetHeight());
             RectangleF rectangleEnnemie = new RectangleF(enemy.GetPositionEnemyX(), enemy.GetPositionEnemyY(), enemy.GetWidth(), enemy.GetHeight());
             RectangleF rectangleJoueur = new RectangleF(joueur.GetPositionJoueurX(), joueur.GetPositionJoueurY(), joueur.GetWidth(), joueur.GetHeight());
-            if (rectangleProjectile.IntersectsWith(rectangleEnnemie))
-            {   
-                score = score + 10;
+            for (int i = 0; i < projectiles.Count; i++)
+            {
+                RectangleF rectangleProjectile = new RectangleF(projectiles[i].GetPositionProjectileX(), projectiles[i].GetPositionProjectileY(), projectiles[i].GetWidth(), projectiles[i].GetHeight());
+                if (rectangleProjectile.IntersectsWith(rectangleEnnemie))
+                {
+                    score = score + 10;
+                    enemy.kill();
+                    projectiles.RemoveAt(i);
+                }
             }
             if (rectangleEnnemie.IntersectsWith(rectangleJoueur))
             {
@@ -68,11 +88,12 @@ namespace Travail2
         }
         private void GamerTimer_Tick(object sender, EventArgs e)
         {
-            StartNewGame();
             MettreAJour();
+            tick++;
         }
         private void MettreAJour()
         {
+            Draw();
             if (playerInput.GetMoveLeft() == true && joueur.GetPositionJoueurX() > 10)
             {
                 joueur.PositionJoueurX = joueur.GetPositionJoueurX() - joueur.GetSpeed();
@@ -81,16 +102,29 @@ namespace Travail2
             {
                 joueur.PositionJoueurX = joueur.GetPositionJoueurX() + joueur.GetSpeed();
             }
-            if (projectile.GetPositionProjectileY() > graphic.GetHeight())
-            {
-                gererJeu.RemoveBullet();
-            }
-            projectile.PositionProjectileY = projectile.GetPositionProjectileY() - projectile.GetSpeed();
             enemy.PositionEnemyY = enemy.GetPositionEnemyY() + enemy.GetSpeed();
+
+            for (int i = 0; i < projectiles.Count; i++)
+            {
+               
+                if (projectiles[i].GetPositionProjectileY() == 0)
+                {
+                    projectiles.RemoveAt(i);
+                    
+
+                }
+                else
+                {
+                    projectiles[i].PositionProjectileY = projectiles[i].GetPositionProjectileY() - projectiles[i].GetSpeed();
+
+                }
+
+
+
+
+            }
             Colision();
             lbl_Score.Text = score.ToString();
-
-            Draw();
         }
 
         private void Draw()
@@ -101,17 +135,46 @@ namespace Travail2
             {
                 graphics.DrawImage(graphic.GetBackgroundImage(), 0, 0);
                 graphics.DrawImage(joueur.GetPlayerImage(), joueur.GetPositionJoueurX(), joueur.GetPositionJoueurY());
-                graphics.DrawImage(projectile.GetProjectileImage(), projectile.GetPositionProjectileX(), projectile.GetPositionProjectileY());
-                graphics.DrawImage(enemy.GetEnemyImage(), enemy.GetPositionEnemyX(), enemy.GetPositionEnemyY());
-            }
+                for (int i = 0; i < projectiles.Count; i++)
+                {
+                    graphics.DrawImage(projectiles[i].GetProjectileImage(), projectiles[i].GetPositionProjectileX(), projectiles[i].GetPositionProjectileY());
 
+                }
+                if (enemy.GetPositionEnemyY() == 0 || enemy.GetPositionEnemyY() > graphic.GetHeight() )
+                {
+                    if (parametres.difficulte == Parametres.Difficulte.Facile)
+                    {
+                        this.enemy = new Ennemie(4);
+                    }
+                    else if (parametres.difficulte == Parametres.Difficulte.Intermediaire)
+                    {
+                        
+                        this.enemy = new Ennemie(4);
+                    }
+                    else
+                    {
+                        
+                        this.enemy = new Ennemie(5);
+                    }
+                    if (tick % DeuxsecondesEnTick == 0 || tick == 0)
+                    {
+
+                        
+                        graphics.DrawImage(enemy.GetEnemyImage(), enemy.GetPositionEnemyX(), enemy.GetPositionEnemyY());
+
+                    }
+                }
+                else
+                {
+                    graphics.DrawImage(enemy.GetEnemyImage(), enemy.GetPositionEnemyX(), enemy.GetPositionEnemyY());
+                }
+            }
             this.BackgroundImage = gameImage;
         }
         private void GameOver()
         {
             GameTimer.Stop();
             lbl_Score.Text = score.ToString();
-            gameOver = true;
             MessageBox.Show("Bravo! Vous avez atteint le score suivant : " + score);
             DialogResult result = MessageBox.Show("Voulez-vous recommencer une partie ?", "Partie Terminée", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
@@ -122,7 +185,6 @@ namespace Travail2
             {
                 this.Close();
             }
-
         }
         public void RestartNewGame()
         {
@@ -131,18 +193,33 @@ namespace Travail2
             this.Close();
         }
         private void StartNewGame()
-        {
+        { 
             CreateLabel();
-            gameOver = false;
             graphic.LoadBackgroundImage();
             joueur.LoadPlayerImage();
-            Colision();
             GameTimer.Start();
         }
         private void TirerProjectile()
         {
+            Projectile projectile;
+            if (parametres.difficulte == Parametres.Difficulte.Facile)
+            {
+               projectile = new Projectile(6);
+            }
+            else if (parametres.difficulte == Parametres.Difficulte.Intermediaire)
+            {
+
+                 projectile = new Projectile(7);
+            }
+            else
+            {
+
+                 projectile = new Projectile(10);
+            }
+
             projectile.SetPositionProjectileX(joueur.GetPositionJoueurX() + projectile.GetWidth());
             projectile.SetPositionProjectileY(joueur.GetPositionJoueurY() - projectile.GetHeight());
+            projectiles.Add(projectile);
         }
 
         private void KeyIsDown(object sender, KeyEventArgs e)

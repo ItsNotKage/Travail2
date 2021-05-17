@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ennemie.cs" />
-    <Compile Include="GameMaster.cs" />
     <Compile Include="GameMenu.cs">
       <SubType>Form</SubType>
     </Compile>
